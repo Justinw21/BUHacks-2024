@@ -28,7 +28,7 @@ const SignIn: React.FC = () => {
   };
 
   return (
-    <div>
+    <div >
         <p>Sign In</p>
         <form className='flex flex-col gap-4' onSubmit={handleSignIn}>
         <Input type="email"
