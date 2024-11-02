@@ -1,5 +1,5 @@
-
 import { logOut } from "@/services/authServices";
+
 import { useNavigate} from 'react-router-dom';
 
 import BottomNavbar from '@/components/ui/navbar';
@@ -9,7 +9,11 @@ import { doc, getDoc } from 'firebase/firestore';
 import { useState } from "react";
 
 
+
+import BottomNavbar from "@/components/ui/navbar";
+
 function Homepage() {
+
     const auth = getAuth();
     const navigate = useNavigate();
     const [name, setName] = useState ("")
@@ -44,10 +48,12 @@ function Homepage() {
         }
       };
       getCurrentUser()
+
   const handleSignOut = async () => {
     await logOut();
-    navigate('/signin');
+    navigate("/signin");
   };
+
     return (
         <div>
             <h2>Home Page</h2>
@@ -58,10 +64,12 @@ function Homepage() {
       Sign Out
     </button>
 
-            <BottomNavbar />
 
-        </div>
-    );
+      <button onClick={handleSignOut}>Sign Out</button>
+
+      <BottomNavbar />
+    </div>
+  );
 }
 
 export default Homepage;
