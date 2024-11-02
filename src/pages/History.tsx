@@ -20,21 +20,22 @@ export default function ActivityScreen() {
     { day: 'T', completed: true },
     { day: 'W', completed: true },
     { day: 'T', completed: true },
-    { day: 'F', date: '29', completed: false },
-    { day: 'S', date: '30', completed: false },
-    { day: 'S', date: '31', completed: false },
+    { day: 'F', completed: true },
+    { day: 'S', date: '2', completed: false },
+    { day: 'S', date: '3', completed: false },
   ]
 
   const recentActivities = [
     {
       date: '9/29/24',
       type: 'Cardio',
-      icon: '/assets/run-icon.svg',
+      icon: '/src/assets/run.png',
       backgroundColor: 'bg-[#E5F6F6]',
     },
     {
       date: '9/29/24',
       type: 'Meditation',
+      icon: '/src/assets/meditation.png',
       backgroundColor: 'bg-[#FFE5E5]',
     },
   ]
@@ -81,7 +82,7 @@ export default function ActivityScreen() {
               >
                 {activity.icon && (
                   <div className="w-12 h-12 flex items-center justify-center">
-                    <img src={activity.icon} alt={`${activity.type} icon`} className="w-6 h-6" />
+                    <img src={activity.icon} alt={`${activity.type} icon`} className="w-18 h-16" />
                   </div>
                 )}
                 <div className="ml-4">
