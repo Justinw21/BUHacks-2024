@@ -1,29 +1,24 @@
 import { logOut } from "@/services/authServices";
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-import BottomNavbar from '@/components/ui/navbar';
-
+import BottomNavbar from "@/components/ui/navbar";
 
 function Homepage() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSignOut = async () => {
     await logOut();
-    navigate('/signin');
+    navigate("/signin");
   };
-    return (
-        <div>
-            <h2>Home Page</h2>
+  return (
+    <div>
+      <h2>Home Page</h2>
 
+      <button onClick={handleSignOut}>Sign Out</button>
 
-            <button onClick={handleSignOut}>
-      Sign Out
-    </button>
-
-            <BottomNavbar />
-
-        </div>
-    );
+      <BottomNavbar />
+    </div>
+  );
 }
 
 export default Homepage;
