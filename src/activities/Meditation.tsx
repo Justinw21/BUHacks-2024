@@ -25,9 +25,8 @@ function Meditation() {
     useEffect(() => {
         const checkActivityCompletion = async () => {
           const today = new Date();
-          const dateString = today.toISOString().split('T')[0]; // Get YYYY-MM-DD format for today
-    
-          // Query the Firestore database to check if the activity is completed today
+          const dateString = today.toISOString().split('T')[0]; 
+
           const q = query(
             collection(db, 'users', userId, 'history'), 
             where('timestamp', '==', dateString)
@@ -35,10 +34,9 @@ function Meditation() {
     
           const querySnapshot = await getDocs(q);
           if (!querySnapshot.empty) {
-            // If there are documents returned, it means the activity was completed
             setActivityCompleted(true);
           } else {
-            // No documents found means the activity is not completed
+
             setActivityCompleted(false);
           }
         };
@@ -78,7 +76,7 @@ function Meditation() {
         const seed = parseInt(today.replace(/-/g, ''), 10);
        
         const randomNum = seed % 3;
-        console.log(randomNum)
+
         if (randomNum == 0) {
            
             return "meditate"
@@ -109,7 +107,7 @@ function Meditation() {
 
     const [activity, setActivity] = useState(getTodaysActivity())
     const handleStart = () => {
-        console.log("here")
+
         setIsActive(true);
         
       };
@@ -132,11 +130,11 @@ function Meditation() {
             
             const userRef = doc(db, 'users', user.uid); 
             const userDoc = await getDoc(userRef); // Fetch the user document
-            console.log(userDoc)
+
       
             if (userDoc.exists()) {
                 const user = userDoc.data()
-                console.log(user.name)
+
                 setName(user.name)
               return { id: userDoc.id, ...userDoc.data() }; // Return user data
             } else {

@@ -1,6 +1,7 @@
-import { logOut } from "@/services/authServices";
 
-import { useNavigate} from 'react-router-dom';
+
+
+import BottomNavbar from "@/components/ui/navbar";
 
 import { db } from "@/firebase/firebaseConfig";
 import { getAuth } from 'firebase/auth';
@@ -19,28 +20,7 @@ function Homepage() {
     const [userId, setUserId] = useState("");
 
 
-    useEffect(() => {
-        console.log(activity)
-        let timer: NodeJS.Timeout;
-        const user = auth.currentUser; 
-        if (user) {
-            setUserId(user.uid)
-
-        }
-        
     
-        if (isActive && timeLeft > 0) {
-          timer = setTimeout(() => {
-            setTimeLeft((prevTime) => prevTime - 1);
-          }, 1000);
-        } else if (timeLeft === 0) {
-            // When the timer hits zero, add to history
-            addToHistory();
-            setIsActive(false); // Optionally stop the timer
-          }
-    
-        return () => clearTimeout(timer); // Clean up on component unmount or reset
-      }, [isActive, timeLeft]);
     
 
     const getTodaysActivity = () => {
@@ -64,19 +44,6 @@ function Homepage() {
         }
     }
 
-    const addToHistory = async () => {
-        try {
-          const activity = {
-            name: "Meditation",
-            timestamp: new Date().toISOString(),
-          };
-          // Create a document in the history collection for the user
-          await setDoc(doc(db, 'users', userId, 'history', `${Date.now()}`), activity);
-          console.log("Activity added to history:", activity);
-        } catch (error) {
-          console.error("Error adding activity to history:", error);
-        }
-      };
 
     const [activity, setActivity] = useState(getTodaysActivity())
 
@@ -92,25 +59,25 @@ function Homepage() {
           try {
             
             const userRef = doc(db, 'users', user.uid); 
-            const userDoc = await getDoc(userRef); // Fetch the user document
+            const userDoc = await getDoc(userRef); 
             console.log(userDoc)
       
             if (userDoc.exists()) {
                 const user = userDoc.data()
                 console.log(user.name)
                 setName(user.name)
-              return { id: userDoc.id, ...userDoc.data() }; // Return user data
+              return { id: userDoc.id, ...userDoc.data() }; 
             } else {
               console.log('No such user document!');
-              return null; // User document does not exist
+              return null; 
             }
           } catch (error) {
             console.error('Error fetching user data: ', error);
-            throw error; // Handle errors as needed
+            throw error; 
           }
         } else {
           console.log('No user is signed in');
-          return null; // No user is signed in
+          return null; 
         }
       };
       getCurrentUser()
