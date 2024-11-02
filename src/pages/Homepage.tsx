@@ -9,9 +9,6 @@ import { doc, getDoc } from 'firebase/firestore';
 import { useState } from "react";
 
 
-
-import BottomNavbar from "@/components/ui/navbar";
-
 function Homepage() {
 
     const auth = getAuth();
