@@ -10,9 +10,6 @@ import { useState, useEffect } from "react"
 import Meditation from "@/activities/Meditation";
 
 
-
-import BottomNavbar from "@/components/ui/navbar";
-
 function Homepage() {
 
     const auth = getAuth();
