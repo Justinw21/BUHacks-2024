@@ -1,45 +1,29 @@
-import BottomNavbar from "@/components/ui/navbar";
-import Card from "@/components/ui/card";
+import { logOut } from "@/services/authServices";
+import { useNavigate} from 'react-router-dom';
+
+import BottomNavbar from '@/components/ui/navbar';
+
 
 function Homepage() {
-  const data = [
-    {
-      title: "1",
-      description: "1",
-      image: "./vite.svg",
-      link: "https://github.com/Justinw21/BUHacks-2024",
-    },
-    {
-      title: "2",
-      description: "2",
-      image: "./vite.svg",
-      link: "https://github.com/Justinw21/BUHacks-2024",
-    },
-    {
-      title: "3",
-      description: "3",
-      image: "./vite.svg",
-      link: "https://github.com/Justinw21/BUHacks-2024",
-    },
-  ];
+    const navigate = useNavigate();
 
-  return (
-    <div>
-      <h2>Home Page</h2>
-      <div className="flex flex-col w-full px-3 gap-y-4">
-        {data.map((item, index) => (
-          <Card
-            key={index}
-            title={item.title}
-            description={item.description}
-            image={item.image}
-            link={item.link}
-          />
-        ))}
-      </div>
-      <BottomNavbar />
-    </div>
-  );
+  const handleSignOut = async () => {
+    await logOut();
+    navigate('/signin');
+  };
+    return (
+        <div>
+            <h2>Home Page</h2>
+
+
+            <button onClick={handleSignOut}>
+      Sign Out
+    </button>
+
+            <BottomNavbar />
+
+        </div>
+    );
 }
 
 export default Homepage;
