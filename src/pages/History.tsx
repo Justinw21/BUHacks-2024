@@ -1,6 +1,6 @@
 
-import React, { useState, useEffect } from 'react'
-import { Check, Users, Home, History } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { Check} from 'lucide-react'
 import BottomNavbar from '@/components/ui/navbar'
 // Simulating a Firebase call
 const getStreakFromFirebase = () => {
@@ -99,28 +99,6 @@ export default function ActivityScreen() {
       {/* Bottom Navigation */}
       <BottomNavbar></BottomNavbar>
     </div>
-  )
-}
-
-type NavButtonProps = {
-  href: string
-  icon: React.ReactNode
-  label: string
-}
-
-function NavButton({ href, icon, label }: NavButtonProps) {
-  return (
-    <a
-      href={href}
-      className="flex flex-col items-center justify-center text-white hover:text-purple-100 transition-colors duration-200 px-2 py-1"
-    >
-      {React.cloneElement(icon as React.ReactElement, {
-        className: 'w-5 h-5 mb-1',
-        'aria-hidden': true,
-      })}
-      <span className="text-xs">{label}</span>
-      <span className="sr-only">{label}</span>
-    </a>
   )
 }
 
