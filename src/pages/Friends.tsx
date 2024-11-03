@@ -6,7 +6,7 @@ import { getAuth } from 'firebase/auth';
 
 function Friends() {
   const [userId, setUserId] = useState("");
-  const [friends, setFriends] = useState<{ id: string, name: string, activity: string }[] | null>(null);
+  const [friends, setFriends] = useState<{ id: string, name?: string, activity?: string }[] | null>(null);
   const [entry, setEntry] = useState(""); // Added state for friend entry
 
   useEffect(() => {

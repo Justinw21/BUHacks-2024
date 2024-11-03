@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { Check } from 'lucide-react'
 import BottomNavbar from '@/components/ui/navbar'
 import { collection, getDocs, doc, getDoc } from 'firebase/firestore'
-import { getAuth, User } from 'firebase/auth'
+import { getAuth} from 'firebase/auth'
 
 
 export default function ActivityScreen() {

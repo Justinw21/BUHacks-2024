@@ -1,12 +1,7 @@
-import { logOut } from "@/services/authServices";
-
-import { useNavigate} from 'react-router-dom';
-
 import { db } from "@/firebase/firebaseConfig";
 import { getAuth } from 'firebase/auth';
 import { doc, getDoc , setDoc , collection, query, where, getDocs} from 'firebase/firestore';
 import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button";
 import CompletedActivity from "./CompletedActivity";
 
 
@@ -16,7 +11,7 @@ import BottomNavbar from "@/components/ui/navbar";
 function Journal() {
 
     const auth = getAuth();
-    const navigate = useNavigate();
+
     const [name, setName] = useState ("")
     const [timeLeft, setTimeLeft] = useState(20); 
     const [isActive, setIsActive] = useState(false);
