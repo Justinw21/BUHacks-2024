@@ -6,22 +6,26 @@ import { db } from "@/firebase/firebaseConfig";
 import { getAuth } from 'firebase/auth';
 import { doc, getDoc , setDoc , collection, query, where, getDocs} from 'firebase/firestore';
 import { useState, useEffect } from "react"
+import { Button } from "@/components/ui/button";
 import CompletedActivity from "./CompletedActivity";
 
 
 
 import BottomNavbar from "@/components/ui/navbar";
 
-function Meditation() {
+function Journal() {
 
     const auth = getAuth();
     const navigate = useNavigate();
     const [name, setName] = useState ("")
-    const [timeLeft, setTimeLeft] = useState(300); 
+    const [timeLeft, setTimeLeft] = useState(20); 
     const [isActive, setIsActive] = useState(false);
     const [userId, setUserId] = useState("");
 
     const [activityCompleted, setActivityCompleted] = useState<boolean | null>(null);
+
+    const [entry, setEntry] = useState<string>('');
+    const [isJournaling, setIsJournaling] = useState(false);
 
     useEffect(() => {
         const checkActivityCompletion = async () => {
@@ -71,53 +75,26 @@ function Meditation() {
       }, [isActive, timeLeft]);
     
 
-    const getTodaysActivity = () => {
-        const today = new Date().toISOString().split('T')[0];
-        
-        const seed = parseInt(today.replace(/-/g, ''), 10);
-       
-        const randomNum = seed % 3;
-
-        if (randomNum == 0) {
-           
-            return "meditate"
-        }
-        if (randomNum == 1) {
-       
-            return "journal"
-        }
-        if (randomNum == 2) {
-            
-            return "jog"
-        }
-    }
+    
 
     const addToHistory = async () => {
+        console.log("hello")
         try {
           const activity = {
-            name: "Meditation",
+            name: "Journal",
+            entry: entry, 
             timestamp: new Date().toISOString().split('T')[0],
+
           };
           // Create a document in the history collection for the user
           await setDoc(doc(db, 'users', userId, 'history', `${Date.now()}`), activity);
+          setActivityCompleted(true)
           console.log("Activity added to history:", activity);
         } catch (error) {
           console.error("Error adding activity to history:", error);
         }
       };
 
-    const [activity, setActivity] = useState(getTodaysActivity())
-    const handleStart = () => {
-
-        setIsActive(true);
-        
-      };
-
-      const formatTime = (seconds: number) => {
-        const minutes = Math.floor(seconds / 60);
-        const remainingSeconds = seconds % 60;
-        return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
-      };
     
     
     const getCurrentUser = async () => {
@@ -158,12 +135,16 @@ function Meditation() {
     navigate("/signin");
   };
 
-  const radius = 90; // Radius of the circle
-  const circumference = 2 * Math.PI * radius;
-  const progress = (timeLeft / 300) * circumference;
+  const clearEntry = () => {
+    setEntry('');
+};
+const handleStartJournaling = () => {
+    setIsJournaling(true);
+  };
+
 
     return (
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center w-full">
             {activityCompleted === null ? (
                 <p>Loading...</p>
             ) : activityCompleted ? (
@@ -172,54 +153,54 @@ function Meditation() {
 
             <div>
 
+            
                 <p className="text-4xl  ">Hi <span className="font-bold">{name},</span></p>
-                <p className="text-[24px]">Let's {activity}</p>
+                <p className="text-[24px]">Let's Journal</p>
 
 
                 <button onClick={handleSignOut}>
                     Sign Out
                 </button>
-                <img className="lg:w-[300px] lg:h-[300px] mb-20" src="meditate.png"/>
-                <div className="block">
+                <div className="max-w-2xl mx-auto p-4">
+            <h1 className="text-2xl font-bold text-center mb-4">Daily Journal</h1>
+            <div className="flex flex-col mb-4">
+           
+            {!isJournaling ? (
 
-                    <div className="relative flex items-center justify-center">
-                        <svg width="220" height="220" className="absolute">
-                        <circle
-                            cx="110"
-                            cy="110"
-                            r={radius}
-                            fill="none"
-                            stroke="#e5e7eb" // Light gray background circle
-                            strokeWidth="12"
-                        />
-                        <circle
-                            cx="110"
-                            cy="110"
-                            r={radius}
-                            fill="none"
-                            stroke="#B7AFDF" // Progress circle color
-                            strokeWidth="12"
-                            strokeDasharray={circumference}
-                            strokeDashoffset={circumference - progress}
-                            strokeLinecap="round"
-                            className="transition-stroke"
-                        />
-                        </svg>
+        <button
+          onClick={handleStartJournaling}
+          className="flex justify-center items-center w-[300px] h-[450px] text-white bg-[#B7AFDF] rounded hover:bg-blue-700 transition duration-300  "
+        >
+          Let's Journal +
+        </button>
+      ) : (
+        <div className="w-full max-w-md">
+            <p>What is one thing you accomplished yesterday that you are proud of?</p>
+          <textarea
+            value={entry}
+            onChange={(e) => setEntry(e.target.value)}
+            placeholder="Write your journal entry here..."
+            className="w-full h-60 p-2 border rounded"
+          />
+          <Button
+            onClick={addToHistory}
+            className="mt-4 px-4 py-2 text-white rounded hover:bg-green-700 transition duration-300"
+          >
+            Save Entry
+          </Button>
+        </div>
+      )}
 
-                        <span className="text-4xl font-mono">
-                        {formatTime(timeLeft)}
-                        </span>
-                    </div>
-                </div>
+             
+        
+      
+            </div>
+            
+        </div>
+                
 
 
-                <button
-                    onClick={handleStart}
-                    disabled={isActive}
-                    className="px-6 py-3 bg-[#B7AFDF] text-white rounded-lg shadow-lg hover:bg-[#686EAD] disabled:opacity-50 mt-24 mb-20"
-                >
-                    {isActive ? "Meditation in Progress" : "Get Started"}
-                </button>
+            
 
             </div>
 
@@ -233,4 +214,4 @@ function Meditation() {
   );
 }
 
-export default Meditation;
+export default Journal;

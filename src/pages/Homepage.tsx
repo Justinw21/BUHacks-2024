@@ -10,6 +10,7 @@ import { db } from "@/firebase/firebaseConfig";
 import { getAuth } from 'firebase/auth';
 import { doc, getDoc , setDoc } from 'firebase/firestore';
 import { useState, useEffect } from "react"
+import Journal from "@/activities/Journal";
 
 import Meditation from "@/activities/Meditation";
 
@@ -18,9 +19,6 @@ function Homepage() {
 
     const auth = getAuth();
     const [name, setName] = useState ("")
-    const [timeLeft, setTimeLeft] = useState(20); 
-    const [isActive, setIsActive] = useState(false);
-    const [userId, setUserId] = useState("");
 
 
     
@@ -29,17 +27,21 @@ function Homepage() {
     const getTodaysActivity = () => {
         const today = new Date().toISOString().split('T')[0];
         
+        
         const seed = parseInt(today.replace(/-/g, ''), 10);
        
         const randomNum = seed % 3;
         console.log(randomNum)
+        console.log(seed)
+        console.log(today)
         if (randomNum == 0) {
+            console.log("meditate")
            
             return "meditate"
         }
         if (randomNum == 1) {
        
-            return "journal"
+            return "meditate"
         }
         if (randomNum == 2) {
             
@@ -63,11 +65,11 @@ function Homepage() {
             
             const userRef = doc(db, 'users', user.uid); 
             const userDoc = await getDoc(userRef); 
-            console.log(userDoc)
+
       
             if (userDoc.exists()) {
                 const user = userDoc.data()
-                console.log(user.name)
+
                 setName(user.name)
               return { id: userDoc.id, ...userDoc.data() }; 
             } else {
@@ -88,10 +90,11 @@ function Homepage() {
 
 
     return (
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center w-full">
             {activity === 'meditate' ? <Meditation /> : 
+            activity === 'journal'? <Journal/>:<h1>Other Activity Page</h1>
             
-            <h1>Other Activity Page</h1>}
+            }
                 
 
 
