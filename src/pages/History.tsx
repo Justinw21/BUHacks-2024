@@ -30,13 +30,13 @@ export default function ActivityScreen() {
     {
       date: '9/29/24',
       type: 'Cardio',
-      icon: '/src/assets/run.png',
+      icon: 'run.png',
       backgroundColor: 'bg-[#E5F6F6]',
     },
     {
       date: '9/29/24',
       type: 'Meditation',
-      icon: '/src/assets/meditation.png',
+      icon: 'meditation.png',
       backgroundColor: 'bg-[#FFE5E5]',
     },
   ]
@@ -46,7 +46,7 @@ export default function ActivityScreen() {
       <main className="container mx-auto px-4 py-8">
         {/* Streak Section */}
         <div className="flex flex-col items-center mb-8">
-          <img src="/src/assets/fire.png" alt="Flame icon" className="w-16 h-16 mb-4" />
+          <img src="fire.png" alt="Flame icon" className="w-16 h-16 mb-4" />
           <div className="text-center">
             <div className="text-7xl font-serif mb-2">
               {streak !== null ? streak : '...'}
