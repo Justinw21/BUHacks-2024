@@ -129,11 +129,6 @@ function Journal() {
       };
       getCurrentUser()
 
-  const handleSignOut = async () => {
-    await logOut();
-    navigate("/");
-  };
-
 const handleStartJournaling = () => {
     setIsJournaling(true);
   };
@@ -154,7 +149,7 @@ const handleStartJournaling = () => {
                 <p className=" text-[28px]">Let's Journal!</p>
                 </div>
                 <button className="flex text-right rounded-[12px] p-2 bg-[#B7AFDF] justify-end mt-10 ml-auto">
-                <a href="/SignIn" className="text-white font-bold cursor-pointer">Sign out</a>
+                <a href="/" className="text-white font-bold cursor-pointer">Sign out</a>
                 </button>
               </div>
               
