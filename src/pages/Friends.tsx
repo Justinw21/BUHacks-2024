@@ -1,3 +1,4 @@
+
 import BottomNavbar from "@/components/ui/navbar";
 import Card from "@/components/ui/card";
 
@@ -40,6 +41,7 @@ function Friends() {
       <BottomNavbar />
     </div>
   );
+
 }
 
 export default Friends;

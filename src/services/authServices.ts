@@ -1,4 +1,5 @@
 // src/services/authService.ts
+
 import { db } from '../firebase/firebaseConfig';
 import { doc, setDoc } from 'firebase/firestore';
 import { auth } from '../firebase/firebaseConfig';
@@ -21,6 +22,7 @@ export const signUp = async (email: string, password: string, name:string ): Pro
 
     const userRef = doc(db, "users", user.uid);
     await setDoc(userRef, userData, { merge: true });
+
     return userCredential.user;
   } catch (error) {
     console.error("Error signing up:", error);

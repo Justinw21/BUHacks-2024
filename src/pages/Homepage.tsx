@@ -1,6 +1,9 @@
 
 
 
+
+
+
 import BottomNavbar from "@/components/ui/navbar";
 
 import { db } from "@/firebase/firebaseConfig";

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react'
 import { Check, Users, Home, History } from 'lucide-react'
 import BottomNavbar from '@/components/ui/navbar'
@@ -122,3 +123,4 @@ function NavButton({ href, icon, label }: NavButtonProps) {
     </a>
   )
 }
+
