@@ -38,7 +38,7 @@ function Homepage() {
         }
         if (randomNum == 1) {
        
-            return "journal"
+            return "meditate"
         }
         if (randomNum == 2) {
             
@@ -87,7 +87,7 @@ function Homepage() {
 
 
     return (
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center w-full">
             {activity === 'meditate' ? <Meditation /> : 
             activity === 'journal'? <Journal/>:<h1>Other Activity Page</h1>
             

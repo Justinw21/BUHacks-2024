@@ -6,6 +6,7 @@ import { db } from "@/firebase/firebaseConfig";
 import { getAuth } from 'firebase/auth';
 import { doc, getDoc , setDoc , collection, query, where, getDocs} from 'firebase/firestore';
 import { useState, useEffect } from "react"
+import CompletedActivity from "./CompletedActivity";
 
 
 
@@ -16,7 +17,7 @@ function Meditation() {
     const auth = getAuth();
     const navigate = useNavigate();
     const [name, setName] = useState ("")
-    const [timeLeft, setTimeLeft] = useState(20); 
+    const [timeLeft, setTimeLeft] = useState(300); 
     const [isActive, setIsActive] = useState(false);
     const [userId, setUserId] = useState("");
 
@@ -166,15 +167,13 @@ function Meditation() {
             {activityCompleted === null ? (
                 <p>Loading...</p>
             ) : activityCompleted ? (
-                <h1 className="text-2xl font-bold">You completed today's activity! Come back tomorrow!</h1>
+                <CompletedActivity/>
             ) : (
 
             <div>
 
-            
-                <h2>Home Page</h2>
                 <p className="text-4xl  ">Hi <span className="font-bold">{name},</span></p>
-                <p>Let's {activity}</p>
+                <p className="text-[24px]">Let's {activity}</p>
 
 
                 <button onClick={handleSignOut}>
@@ -198,7 +197,7 @@ function Meditation() {
                             cy="110"
                             r={radius}
                             fill="none"
-                            stroke="#3b82f6" // Progress circle color
+                            stroke="#B7AFDF" // Progress circle color
                             strokeWidth="12"
                             strokeDasharray={circumference}
                             strokeDashoffset={circumference - progress}
@@ -217,7 +216,7 @@ function Meditation() {
                 <button
                     onClick={handleStart}
                     disabled={isActive}
-                    className="px-6 py-3 bg-blue-500 text-white rounded-lg shadow-lg hover:bg-blue-600 disabled:opacity-50 mt-20 mb-20"
+                    className="px-6 py-3 bg-[#B7AFDF] text-white rounded-lg shadow-lg hover:bg-[#686EAD] disabled:opacity-50 mt-24 mb-20"
                 >
                     {isActive ? "Meditation in Progress" : "Get Started"}
                 </button>

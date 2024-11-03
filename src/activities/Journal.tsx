@@ -6,6 +6,8 @@ import { db } from "@/firebase/firebaseConfig";
 import { getAuth } from 'firebase/auth';
 import { doc, getDoc , setDoc , collection, query, where, getDocs} from 'firebase/firestore';
 import { useState, useEffect } from "react"
+import { Button } from "@/components/ui/button";
+import CompletedActivity from "./CompletedActivity";
 
 
 
@@ -23,6 +25,7 @@ function Journal() {
     const [activityCompleted, setActivityCompleted] = useState<boolean | null>(null);
 
     const [entry, setEntry] = useState<string>('');
+    const [isJournaling, setIsJournaling] = useState(false);
 
     useEffect(() => {
         const checkActivityCompletion = async () => {
@@ -135,22 +138,24 @@ function Journal() {
   const clearEntry = () => {
     setEntry('');
 };
+const handleStartJournaling = () => {
+    setIsJournaling(true);
+  };
 
 
     return (
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center w-full">
             {activityCompleted === null ? (
                 <p>Loading...</p>
             ) : activityCompleted ? (
-                <h1 className="text-2xl font-bold">You completed today's activity! Come back tomorrow!</h1>
+                <CompletedActivity/>
             ) : (
 
             <div>
 
             
-                <h2>Home Page</h2>
                 <p className="text-4xl  ">Hi <span className="font-bold">{name},</span></p>
-                <p>Let's Journal</p>
+                <p className="text-[24px]">Let's Journal</p>
 
 
                 <button onClick={handleSignOut}>
@@ -159,28 +164,36 @@ function Journal() {
                 <div className="max-w-2xl mx-auto p-4">
             <h1 className="text-2xl font-bold text-center mb-4">Daily Journal</h1>
             <div className="flex flex-col mb-4">
-                <textarea
-                    className="border border-gray-300 rounded p-2 h-32"
-                    value={entry}
-                    onChange={(e) => setEntry(e.target.value)}
-                    placeholder="What's on your mind?"
-                    required
-                />
-                <div className="flex justify-between mt-2">
-                    <button
-                        type="button"
-                        onClick={clearEntry}
-                        className="bg-red-500 text-white rounded px-4 py-2 hover:bg-red-600"
-                    >
-                        Clear Entry
-                    </button>
-                    <button
-                        onClick={addToHistory}
-                        className="bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600"
-                    >
-                        Save Entry
-                    </button>
-                </div>
+           
+            {!isJournaling ? (
+
+        <button
+          onClick={handleStartJournaling}
+          className="flex justify-center items-center w-[300px] h-[450px] text-white bg-[#B7AFDF] rounded hover:bg-blue-700 transition duration-300  "
+        >
+          Let's Journal +
+        </button>
+      ) : (
+        <div className="w-full max-w-md">
+            <p>What is one thing you accomplished yesterday that you are proud of?</p>
+          <textarea
+            value={entry}
+            onChange={(e) => setEntry(e.target.value)}
+            placeholder="Write your journal entry here..."
+            className="w-full h-60 p-2 border rounded"
+          />
+          <Button
+            onClick={addToHistory}
+            className="mt-4 px-4 py-2 text-white rounded hover:bg-green-700 transition duration-300"
+          >
+            Save Entry
+          </Button>
+        </div>
+      )}
+
+             
+        
+      
             </div>
             
         </div>
