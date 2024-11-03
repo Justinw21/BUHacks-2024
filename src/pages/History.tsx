@@ -2,14 +2,9 @@ import { db } from '@/firebase/firebaseConfig'
 import { useState, useEffect } from 'react'
 import { Check } from 'lucide-react'
 import BottomNavbar from '@/components/ui/navbar'
-import { collection, getDocs } from 'firebase/firestore'
-import { getAuth } from 'firebase/auth'
+import { collection, getDocs, doc, getDoc } from 'firebase/firestore'
+import { getAuth, User } from 'firebase/auth'
 
-const getStreakFromFirebase = () => {
-  return new Promise<number>((resolve) => {
-    setTimeout(() => resolve(4), 1000)
-  })
-}
 
 export default function ActivityScreen() {
   const [streak, setStreak] = useState<number | null>(null)
@@ -23,13 +18,18 @@ export default function ActivityScreen() {
       const user = auth.currentUser
       if (user) {
         setUserId(user.uid)
+        const userRef = doc(db, 'users', user.uid);
+        const userDoc = await getDoc(userRef);
+        if(userDoc.exists()){
+          const userInfo = userDoc.data()
+          setStreak(userInfo.streaks)
+        }
       } else {
         console.log('No user is signed in')
       }
     }
 
     getCurrentUser()
-    getStreakFromFirebase().then(setStreak)
   }, [])
 
   useEffect(() => {
