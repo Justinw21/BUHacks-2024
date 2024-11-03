@@ -44,7 +44,7 @@ function Homepage() {
         }
         if (randomNum == 1) {
        
-            return "jog"
+            return "journal"
         }
         if (randomNum == 2) {
             

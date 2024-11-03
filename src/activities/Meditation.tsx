@@ -176,7 +176,7 @@ function Meditation() {
                 } transition-opacity duration-1000 ease-out  flex justify-center flex-col items-center p-8 rounded-lg`}>
 
                 <p className="text-4xl  mt-10">Hi <span className="font-bold">{name},</span></p>
-                <p className="text-[24px]">Let's {activity}</p>
+                <p className="text-[24px]">Let's Meditate</p>
 
 
                 <button onClick={handleSignOut}>
