@@ -170,17 +170,23 @@ function Meditation() {
                 <CompletedActivity/>
             ) : (
 
-            <div>
+            <div className="flex flex-col justify-center items-center">
+                <div className={`${
+                    !isActive ? 'opacity-100' : 'opacity-0'
+                } transition-opacity duration-1000 ease-out  flex justify-center flex-col items-center p-8 rounded-lg`}>
 
-                <p className="text-4xl  ">Hi <span className="font-bold">{name},</span></p>
+                <p className="text-4xl  mt-10">Hi <span className="font-bold">{name},</span></p>
                 <p className="text-[24px]">Let's {activity}</p>
 
 
                 <button onClick={handleSignOut}>
                     Sign Out
                 </button>
-                <img className="lg:w-[300px] lg:h-[300px] mb-20" src="meditate.png"/>
-                <div className="block">
+                <img className="lg:w-[300px] lg:h-[300px] " src="meditate.png"/>
+                </div>
+                <div className={`${
+                    isActive ? 'scale-150 w-screen h-screen fixed inset-0 flex items-center justify-center ' : 'scale-100'
+                } transition-transform duration-700 ease-out   p-8 rounded-lg`}>
 
                     <div className="relative flex items-center justify-center">
                         <svg width="220" height="220" className="absolute">
@@ -216,7 +222,8 @@ function Meditation() {
                 <button
                     onClick={handleStart}
                     disabled={isActive}
-                    className="px-6 py-3 bg-[#B7AFDF] text-white rounded-lg shadow-lg hover:bg-[#686EAD] disabled:opacity-50 mt-24 mb-20"
+                    className={`${
+                        isActive ? 'mt-16': 'mt-20'}'flex justify-center items-center px-6 py-3 bg-[#B7AFDF] text-white rounded-lg shadow-lg hover:bg-[#686EAD] disabled:opacity-50 mt-20 mb-20`}
                 >
                     {isActive ? "Meditation in Progress" : "Get Started"}
                 </button>
