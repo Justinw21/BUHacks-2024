@@ -64,14 +64,14 @@ function Journal() {
             setTimeLeft((prevTime) => prevTime - 1);
           }, 1000);
         } else if (timeLeft === 0) {
-            
+            // When the timer hits zero, add to history
             addToHistory();
             setIsActive(false);
             setActivityCompleted(true)
-            setTimeLeft(300)
+            setTimeLeft(300) // Optionally stop the timer
           }
     
-        return () => clearTimeout(timer); 
+        return () => clearTimeout(timer); // Clean up on component unmount or reset
       }, [isActive, timeLeft]);
     
 
@@ -147,48 +147,52 @@ const handleStartJournaling = () => {
                 <CompletedActivity/>
             ) : (
 
-            <div>
-
-            
-                <p className="text-4xl mt-10 ">Hi <span className="font-bold">{name},</span></p>
-                <p className="text-[24px]">Let's Journal</p>
-
-
-                <button onClick={handleSignOut}>
-                    Sign Out
+            <div className="flex flex-col items-center">
+              <div className="flex justify-start items-center w-full px-4">
+                <div>
+                <p className=" text-[32px] mt-10 ">Hi, <span className="font-bold">{name}</span></p>
+                <p className=" text-[28px]">Let's Journal!</p>
+                </div>
+                <button className="flex text-right rounded-[12px] p-2 bg-[#B7AFDF] justify-end mt-10 ml-auto">
+                <a href="/SignIn" className="text-white font-bold cursor-pointer">Sign out</a>
                 </button>
+              </div>
+              
+                
                 <div className="max-w-2xl mx-auto p-4">
-            <h1 className="text-2xl font-bold text-center mb-10">Daily Journal</h1>
-            <div className="flex flex-col mb-4">
+            <h1 className="text-[32px] font-semibold text-center mt-14 mb-4">Daily Journal</h1>
+            <div className="flex flex-col mb-4 ">
+
            
             {!isJournaling ? (
                 <div className="flex flex-col">
                     <img  className=""src="journal.png"/>
 
-                    <button
-                    onClick={handleStartJournaling}
-                    className="shadow-lg px-8 flex justify-left text-white bg-[#B7AFDF] mt-8 py-2 text-[24px] rounded hover:bg-blue-700 transition duration-300  "
-                    >
-                    Get Started
-                    </button>
-                </div>
+
+          <button
+            onClick={handleStartJournaling}
+            className="shadow-lg px-8 flex justify-center w-full text-white font-semibold bg-[#B7AFDF] mt-8 py-2 text-[24px] rounded-[14px] hover:bg-blue-700 transition duration-300 ">
+            Get Started
+          </button>
+        </div>
+        
                 
       ) : (
-        <div className="w-full max-w-md">
-            <p>What is one thing you accomplished yesterday that you are proud of?</p>
+        
+        <div className="flex flex-col justify-center w-full">
+            <p className="text-[17px] text-white text-center font-bold bg-[#B7AFDF] mb-4 rounded-[8px] py-4"> Prompt: What is one thing you accomplished yesterday that you are proud of?</p>
           <textarea
             value={entry}
             onChange={(e) => setEntry(e.target.value)}
             placeholder="Write your journal entry here..."
-            className="w-full h-60 p-2 border rounded"
+            className=" h-60 p-2 rounded-[14px]"
           />
-          <Button
+          <button
             onClick={addToHistory}
-            className="mt-4 px-4 py-2 text-white rounded hover:bg-green-700 transition duration-300"
-          >
-            Save Entry
-          </Button>
-          <div className="flex text-[36px] gap-4 mt-16 items-center ">
+            className="mt-4 px-4 py-2 bg-[#B7AFDF] font-bold text-[15px] text-white rounded-[14px] hover:bg-green-700 transition duration-300">
+              Save Entry
+          </button>
+          <div className="flex justify-center text-[36px] gap-4 mt-16 items-center ">
             <p className="text-[30px]">Mood</p>
             <button className="focus:border-2 focus:border-blue-500 rounded-full px-2">😀</button>
             <button className="focus:border-2 focus:border-blue-500 rounded-full px-2">🙂</button>
@@ -197,28 +201,18 @@ const handleStartJournaling = () => {
             </div>
         </div>
       )}
-
-             
-        
-      
-            </div>
-            
+                    
         </div>
-                
-
-
-            
-
             </div>
-
-)}
-                
-
-
+              
             <BottomNavbar />
-      
         </div>
+            )
+          }
+        </div>
+
   );
-}
+};
+
 
 export default Journal;
