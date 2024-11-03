@@ -7,7 +7,7 @@ export default function BottomNavbar() {
       <div className="container mx-auto max-w-sm px-4">
         <div className="flex justify-between items-center">
           <NavButton href="/friends" icon={<Users />} label="Friends" />
-          <NavButton href="/" icon={<Home />} label="Home" />
+          <NavButton href="/homepage" icon={<Home />} label="Home" />
           <NavButton href="/history" icon={<Clock />} label="History" />
         </div>
       </div>

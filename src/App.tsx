@@ -17,11 +17,11 @@ function App() {
     <AuthProvider>
 
     <Routes>
-      <Route path="/" element={<Homepage />} />
+      <Route path="/" element={<SignIn/>} />
+      <Route path="/signup" element={<SignUp/>} />
+      <Route path="/homepage" element={<Homepage />} />
       <Route path="/history" element={<History />} /> 
-      <Route path="/friends" element={<Friends />} /> 
-      <Route path="/signin" element={<SignIn/>} />
-      <Route path = "/signup" element={<SignUp/>} /> 
+      <Route path="/friends" element={<Friends />} />  
     </Routes>
 
     </AuthProvider>
