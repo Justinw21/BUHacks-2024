@@ -64,6 +64,13 @@ function Friends() {
             className="p-4 rounded-xl bg-blue-50 flex items-center"
           >
 
+            <div className="w-12 h-12 flex items-center justify-center">
+              <img src={"/src/assets/profile.png"} alt="friend icon" className="w-10 h-10" />
+            </div>
+            <div className="ml-4">
+              <div className="text-lg font-semibold">{friend.name}</div>
+              <div className="text-gray-600">{friend.activity || 'No recent activity'}</div>
+
             <div className="w-24 h-24 flex items-center justify-center">
               <img src={"/public/bowie.png"} alt="friend icon" className="w-24 h-24" />
             </div>

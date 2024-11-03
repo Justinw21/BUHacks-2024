@@ -3,6 +3,16 @@ import { useState, useEffect } from 'react'
 import { Check } from 'lucide-react'
 import BottomNavbar from '@/components/ui/navbar'
 
+import { collection, getDocs } from 'firebase/firestore'
+import { getAuth } from 'firebase/auth'
+
+const getStreakFromFirebase = () => {
+  return new Promise<number>((resolve) => {
+    setTimeout(() => resolve(4), 1000)
+  })
+}
+
+
 import { collection, getDocs, doc, getDoc } from 'firebase/firestore'
 import { getAuth, User } from 'firebase/auth'
 import { getDay, subDays, format } from 'date-fns'
@@ -35,6 +45,11 @@ export default function ActivityScreen() {
 
     getCurrentUser()
 
+
+    //getStreakFromFirebase(user).then(setStreak)
+
+
+    getStreakFromFirebase().then(setStreak)
     //getStreakFromFirebase(user).then(setStreak)
 
   }, [])
@@ -82,7 +97,9 @@ export default function ActivityScreen() {
     { day: 'T', completed: true },
     { day: 'F', completed: true },
 
+
     { day: 'S', date: '2', completed: false }
+
 
   ]
 
