@@ -180,7 +180,7 @@ const handleStartJournaling = () => {
       ) : (
         
         <div className="flex flex-col justify-center w-full">
-            <p className="mt-4 text-[17px] text-white text-center font-bold bg-[#B7AFDF] mb-4 rounded-[8px] py-4"> Prompt: What is one thing you accomplished yesterday that you are proud of?</p>
+            <p className="text-[17px] text-white text-center font-bold bg-[#B7AFDF] mb-4 rounded-[8px] py-4"> Prompt: What is one thing you accomplished yesterday that you are proud of?</p>
           <textarea
             value={entry}
             onChange={(e) => setEntry(e.target.value)}
@@ -192,7 +192,7 @@ const handleStartJournaling = () => {
             className="mt-4 px-4 py-2 bg-[#B7AFDF] font-bold text-[15px] text-white rounded-[14px] hover:bg-green-700 transition duration-300">
               Save Entry
           </button>
-          <div className="flex text-[36px] gap-4 mt-16 items-center ">
+          <div className="flex justify-center text-[36px] gap-4 mt-16 items-center ">
             <p className="text-[30px]">Mood</p>
             <button className="focus:border-2 focus:border-blue-500 rounded-full px-2">😀</button>
             <button className="focus:border-2 focus:border-blue-500 rounded-full px-2">🙂</button>
