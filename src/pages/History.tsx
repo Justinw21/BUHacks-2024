@@ -84,17 +84,9 @@ export default function ActivityScreen() {
       return { icon: '/public/meditate.png', backgroundColor: 'bg-[#FFE5E5]' }
     } else if (type === 'Cardio') {
       return { icon: '/public/run.png', backgroundColor: 'bg-[#F0EBF8]' }
-    } else if (type === 'Yoga') {
-      return { icon: '/public/yoga.png', backgroundColor: 'bg-[#E8F5E9]' }
     } else {
       return { icon: '/public/default.png', backgroundColor: 'bg-blue-50' }
     }
-  }
-
-  const formatTimestamp = (timestamp: any) => {
-    if (!timestamp) return ''
-    const date = new Date(timestamp.seconds * 1000)
-    return date.toLocaleString()
   }
 
   return (
@@ -144,7 +136,7 @@ export default function ActivityScreen() {
                     <img src={icon} alt={`${activity.type || activity.name} icon`} className="w-12 h-12" />
                   </div>
                   <div className="ml-4">
-                    <div className="text-lg">{activity.date || formatTimestamp(activity.timestamp)}</div>
+                    <div className="text-lg">{activity.timestamp}</div>
                     <div className="text-gray-600">{activity.type || activity.name}</div>
                   </div>
                 </div>
