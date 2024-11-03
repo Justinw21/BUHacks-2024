@@ -223,7 +223,7 @@ function Meditation() {
                     onClick={handleStart}
                     disabled={isActive}
                     className={`${
-                        isActive ? 'mt-16': 'mt-20'}'flex justify-center items-center px-6 py-3 bg-[#B7AFDF] text-white rounded-lg shadow-lg hover:bg-[#686EAD] disabled:opacity-50 mt-20 mb-20`}
+                        isActive ? 'mt-16': 'mt-20'}'flex justify-center items-center px-6 py-3 bg-[#78BBD7] text-white rounded-lg shadow-lg hover:bg-[#686EAD] disabled:opacity-50 mt-20 mb-20`}
                 >
                     {isActive ? "Meditation in Progress" : "Get Started"}
                 </button>
