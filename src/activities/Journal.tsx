@@ -136,67 +136,7 @@ const handleStartJournaling = () => {
   };
 
 
-<<<<<<< HEAD
-  return (
-    <div className="flex flex-col justify-center items-center w-full">
-        {activityCompleted === null ? (
-            <p>Loading...</p>
-        ) : activityCompleted ? (
-            <CompletedActivity/>
-        ) : (
 
-        <div className="flex flex-col items-center">
-          <div className="flex justify-start items-center w-full px-4">
-            <div>
-            <p className=" text-[32px] mt-10 ">Hi, <span className="font-bold">{name}</span></p>
-            <p className=" text-[28px]">Let's Journal!</p>
-            </div>
-            <button className="flex text-right rounded-[12px] p-2 bg-[#B7AFDF] justify-end mt-10 ml-auto">
-            <a href="/SignIn" className="text-white font-bold cursor-pointer">Sign out</a>
-            </button>
-          </div>
-          
-            
-            <div className="max-w-2xl mx-auto p-4">
-        <h1 className="text-[32px] font-semibold text-center mt-14 mb-4">Daily Journal</h1>
-        <div className="flex flex-col mb-4 ">
-
-       
-        {!isJournaling ? (
-            <div className="flex flex-col">
-                <img  className=""src="journal.png"/>
-
-
-      <button
-        onClick={handleStartJournaling}
-        className="shadow-lg px-8 flex justify-center w-full text-white font-semibold bg-[#B7AFDF] mt-8 py-2 text-[24px] rounded-[14px] hover:bg-blue-700 transition duration-300 ">
-        Get Started
-      </button>
-    </div>
-    
-            
-  ) : (
-    
-    <div className="flex flex-col">
-        <p className="flex mt-4 flex justify-center w-full text-[17px] text-white text-center font-bold bg-[#B7AFDF] mb-4 rounded-[8px] px-4 py-4"> Prompt: What is one thing you accomplished yesterday that you are proud of?</p>
-      <textarea
-        value={entry}
-        onChange={(e) => setEntry(e.target.value)}
-        placeholder="Write your journal entry here..."
-        className=" h-60 p-2 rounded-[14px]"
-      />
-      <button
-        onClick={addToHistory}
-        className="mt-4 px-8 py-2 bg-[#B7AFDF] font-bold text-[15px] text-white rounded-[14px] hover:bg-green-700 transition duration-300">
-          Save Entry
-      </button>
-      <div className="flex text-[36px] gap-4 mt-16 items-center ">
-        <p className="text-[30px]">Mood</p>
-        <button className="focus:border-2 focus:border-blue-500 rounded-full px-2">😀</button>
-        <button className="focus:border-2 focus:border-blue-500 rounded-full px-2">🙂</button>
-        <button className="focus:border-2 focus:border-blue-500 rounded-full px-2">😰</button>
-        <button className="focus:border-2 focus:border-blue-500 rounded-full px-2">🤮</button>
-=======
     return (
         <div className="flex flex-col justify-center items-center w-full">
             {activityCompleted === null ? (
@@ -249,22 +189,13 @@ const handleStartJournaling = () => {
       </div>
 )}
             <BottomNavbar />
->>>>>>> 037fe22bd3b0413e3d0acb2a455026dd283a1413
-        </div>
-    </div>
-  )}
-                
-    </div>
-        </div>
-          
-        <BottomNavbar />
-    </div>
-        )
-      }
-    </div>
 
-);
-};
+        </div>
+    )}
+                
+
+          
+  
 
 
 export default Journal;
