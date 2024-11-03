@@ -41,7 +41,7 @@ function Homepage() {
         }
         if (randomNum == 1) {
        
-            return "meditate"
+            return "journal"
         }
         if (randomNum == 2) {
             
