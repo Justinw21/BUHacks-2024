@@ -70,28 +70,6 @@ function Cardio() {
         return () => clearTimeout(timer); // Clean up on component unmount or reset
       }, [isActive, timeLeft]);
     
-
-    const getTodaysActivity = () => {
-        const today = new Date().toISOString().split('T')[0];
-        
-        const seed = parseInt(today.replace(/-/g, ''), 10);
-       
-        const randomNum = seed % 3;
-
-        if (randomNum == 0) {
-           
-            return "meditate"
-        }
-        if (randomNum == 1) {
-       
-            return "journal"
-        }
-        if (randomNum == 2) {
-            
-            return "jog"
-        }
-    }
-
     const addToHistory = async () => {
         try {
           const activity = {
@@ -106,7 +84,7 @@ function Cardio() {
         }
       };
 
-    const [activity] = useState(getTodaysActivity())
+    //const [activity] = useState(getTodaysActivity())
     const handleStart = () => {
 
         setIsActive(true);
