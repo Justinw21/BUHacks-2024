@@ -12,7 +12,7 @@ import CompletedActivity from "./CompletedActivity";
 
 import BottomNavbar from "@/components/ui/navbar";
 
-function Meditation() {
+function Cardio() {
 
     const auth = getAuth();
     const navigate = useNavigate();
@@ -95,10 +95,10 @@ function Meditation() {
     const addToHistory = async () => {
         try {
           const activity = {
-            name: "Meditation",
+            name: "Cardio",
             timestamp: new Date().toISOString().split('T')[0],
           };
-          // Create a document in the history collection for the user
+         
           await setDoc(doc(db, 'users', userId, 'history', `${Date.now()}`), activity);
           console.log("Activity added to history:", activity);
         } catch (error) {
@@ -130,25 +130,25 @@ function Meditation() {
           try {
             
             const userRef = doc(db, 'users', user.uid); 
-            const userDoc = await getDoc(userRef); // Fetch the user document
+            const userDoc = await getDoc(userRef); 
 
       
             if (userDoc.exists()) {
                 const user = userDoc.data()
 
                 setName(user.name)
-              return { id: userDoc.id, ...userDoc.data() }; // Return user data
+              return { id: userDoc.id, ...userDoc.data() }; 
             } else {
               console.log('No such user document!');
-              return null; // User document does not exist
+              return null; 
             }
           } catch (error) {
             console.error('Error fetching user data: ', error);
-            throw error; // Handle errors as needed
+            throw error; 
           }
         } else {
           console.log('No user is signed in');
-          return null; // No user is signed in
+          return null; 
         }
       };
       getCurrentUser()
@@ -176,13 +176,13 @@ function Meditation() {
                 } transition-opacity duration-1000 ease-out  flex justify-center flex-col items-center p-8 rounded-lg`}>
 
                 <p className="text-4xl  mt-10">Hi <span className="font-bold">{name},</span></p>
-                <p className="text-[24px]">Let's Meditate</p>
+                <p className="text-[24px]">Let's Walk</p>
 
 
-                <button onClick={handleSignOut}>
+                <button className="mb-10" onClick={handleSignOut}>
                     Sign Out
                 </button>
-                <img className="lg:w-[300px] lg:h-[300px] " src="meditate.png"/>
+                
                 </div>
                 <div className={`${
                     isActive ? 'scale-150 w-screen h-screen fixed inset-0 flex items-center justify-center ' : 'scale-100'
@@ -222,10 +222,11 @@ function Meditation() {
                 <button
                     onClick={handleStart}
                     disabled={isActive}
+                    hidden={isActive}
                     className={`${
-                        isActive ? 'mt-16': 'mt-20'}'flex justify-center items-center px-6 py-3 bg-[#78BBD7] text-white rounded-lg shadow-lg hover:bg-[#686EAD] disabled:opacity-50 mt-20 mb-20`}
+                        isActive ? "hidden": 'mt-40'}'flex justify-center items-center px-6 py-3 bg-[#78BBD7] text-white rounded-lg shadow-lg hover:bg-[#686EAD] disabled:opacity-50 mt-20 mb-20`}
                 >
-                    {isActive ? "Meditation in Progress" : "Get Started"}
+                    {isActive ? "In Progress" : "Get Started"}
                 </button>
 
             </div>
@@ -240,4 +241,4 @@ function Meditation() {
   );
 }
 
-export default Meditation;
+export default Cardio;
