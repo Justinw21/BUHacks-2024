@@ -17,6 +17,7 @@ export default function ActivityScreen() {
   const [userHistory, setUserHistory] = useState<{ id: string; date?: string; type?: string; icon?: string; backgroundColor?: string; timestamp?: any; name?: string }[] | null>(null)
 
   useEffect(() => {
+
     const getCurrentUser = async () => {
       const auth = getAuth()
       const user = auth.currentUser
@@ -64,6 +65,7 @@ export default function ActivityScreen() {
       throw error
     }
   }
+
 
   const days = [
     { day: 'M', completed: true },

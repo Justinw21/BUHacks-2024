@@ -184,6 +184,13 @@ const handleStartJournaling = () => {
           >
             Save Entry
           </Button>
+          <div className="flex text-[36px] gap-4 mt-16 items-center ">
+            <p className="text-[30px]">Mood</p>
+            <button className="focus:border-2 focus:border-blue-500 rounded-full px-2">😀</button>
+            <button className="focus:border-2 focus:border-blue-500 rounded-full px-2">🙂</button>
+            <button className="focus:border-2 focus:border-blue-500 rounded-full px-2">😰</button>
+            <button className="focus:border-2 focus:border-blue-500 rounded-full px-2">🤮</button>
+            </div>
         </div>
       )}
 
