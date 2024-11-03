@@ -22,11 +22,6 @@ export default function History() {
     getStreakFromFirebase().then(setStreak)
   }, [userId])
 
-
-
-
-  
-
   useEffect(() => {
     console.log("hello")
     const fetchHistory = async () => {
@@ -69,11 +64,7 @@ export default function History() {
   const getCurrentUser = async () => {
     const auth = getAuth();
     const user = auth.currentUser; 
-    
-    
-  
     if (user) {
-        
       setUserId(user.uid)
     } else {
       console.log('No user is signed in');
@@ -157,7 +148,7 @@ export default function History() {
                   <div className="w-12 h-12 flex items-center justify-center">
                     <img src={"/src/assets/run.png"} alt={`meditation icon`} className="w-18 h-16" />
                   </div>
-                
+            
                 <div className="ml-4">
                   <div className="text-lg">{activity.name}</div>
                   <div className="text-gray-600">{activity.timestamp}</div>
