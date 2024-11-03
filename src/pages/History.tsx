@@ -79,13 +79,13 @@ export default function ActivityScreen() {
 
   const getIconAndBackgroundColor = (type: string) => {
     if (type === 'Journal') {
-      return { icon: '/public/journal.png', backgroundColor: 'bg-[#E5F6F6]' }
+      return { icon: 'journal.png', backgroundColor: 'bg-[#E5F6F6]' }
     } else if (type === 'Meditation') {
-      return { icon: '/public/meditate.png', backgroundColor: 'bg-[#FFE5E5]' }
+      return { icon: 'meditate.png', backgroundColor: 'bg-[#FFE5E5]' }
     } else if (type === 'Cardio') {
-      return { icon: '/public/run.png', backgroundColor: 'bg-[#F0EBF8]' }
+      return { icon: 'run.png', backgroundColor: 'bg-[#F0EBF8]' }
     } else {
-      return { icon: '/public/default.png', backgroundColor: 'bg-blue-50' }
+      return { icon: 'default.png', backgroundColor: 'bg-blue-50' }
     }
   }
 
