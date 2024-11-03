@@ -53,7 +53,7 @@ const SignIn: React.FC = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <Button type="submit" className="bg-white bg-opacity-75 text-purple-450 font-bold rounded-[12px] py-6 mt-2">
-            Sign In
+            <a href = "/" className="text-purple-450 cursor-pointer"> Sign in</a>
           </Button>
         </form>
         <form className="flex flex-col gap-2 w-full mt-16 " onSubmit={handleSignIn}> 
