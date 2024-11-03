@@ -1,7 +1,9 @@
-
+import { db } from '@/firebase/firebaseConfig'
 import { useState, useEffect } from 'react'
 import { Check} from 'lucide-react'
 import BottomNavbar from '@/components/ui/navbar'
+import { collection, getDocs, doc , getDoc} from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 // Simulating a Firebase call
 const getStreakFromFirebase = () => {
   return new Promise<number>((resolve) => {
@@ -9,12 +11,76 @@ const getStreakFromFirebase = () => {
   })
 }
 
-export default function ActivityScreen() {
+export default function History() {
   const [streak, setStreak] = useState<number | null>(null)
+  const [userId, setUserId] = useState("");
+  const [userHistory, setUserHistory] = useState<{ id: string }[] | null>(null);
 
   useEffect(() => {
+    
+    getCurrentUser() 
     getStreakFromFirebase().then(setStreak)
-  }, [])
+  }, [userId])
+
+
+
+
+  
+
+  useEffect(() => {
+    console.log("hello")
+    const fetchHistory = async () => {
+      try {
+          const data = await getUserHistory(userId);
+          if (data) {
+            const filteredData = data.filter(item => item.id !== 'emptyHistory');
+            setUserHistory(filteredData)
+            console.log(filteredData)
+
+          }
+          
+      } catch (err) {
+          console.error('Failed to load history')
+      } finally {
+          console.log("done")
+      }
+  };
+
+  fetchHistory();
+  }, [userId])
+
+  const getUserHistory = async (userId: string) => {
+    try {
+        const historyCollectionRef = collection(db, 'users', userId, 'history');
+        const historySnapshot = await getDocs(historyCollectionRef);
+        
+        const historyData = historySnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }));
+
+        return historyData;
+    } catch (error) {
+        console.error("Error fetching user history:", error);
+        throw error; 
+    }
+};
+
+  const getCurrentUser = async () => {
+    const auth = getAuth();
+    const user = auth.currentUser; 
+    
+    
+  
+    if (user) {
+        
+      setUserId(user.uid)
+    } else {
+      console.log('No user is signed in');
+      return null; 
+    }
+  };
+  
 
   const days = [
     { day: 'M', completed: true },
@@ -40,6 +106,12 @@ export default function ActivityScreen() {
       backgroundColor: 'bg-[#FFE5E5]',
     },
   ]
+
+  const formatTimestamp = (timestamp:any) => {
+    if (!timestamp) return '';
+    const date = new Date(timestamp.seconds * 1000); // Convert seconds to milliseconds
+    return date.toLocaleString(); // Format to a local string (customize as needed)
+};
 
   return (
     <div className="min-h-screen bg-white pb-16">
@@ -76,19 +148,19 @@ export default function ActivityScreen() {
         <div className="mb-8">
           <h2 className="text-3xl font-serif mb-4">Recent Activity</h2>
           <div className="space-y-4">
-            {recentActivities.map((activity, index) => (
+            {userHistory &&userHistory!.map((activity, index) => (
               <div
                 key={index}
-                className={`p-4 rounded-xl ${activity.backgroundColor} flex items-center`}
+                className={`p-4 rounded-xl bg-blue-50 flex items-center`}
               >
-                {activity.icon && (
+                
                   <div className="w-12 h-12 flex items-center justify-center">
-                    <img src={activity.icon} alt={`${activity.type} icon`} className="w-18 h-16" />
+                    <img src={"/src/assets/run.png"} alt={`meditation icon`} className="w-18 h-16" />
                   </div>
-                )}
+                
                 <div className="ml-4">
-                  <div className="text-lg">{activity.date}</div>
-                  <div className="text-gray-600">{activity.type}</div>
+                  <div className="text-lg">{activity.name}</div>
+                  <div className="text-gray-600">{formatTimestamp(activity.timestamp)}</div>
                 </div>
               </div>
             ))}
