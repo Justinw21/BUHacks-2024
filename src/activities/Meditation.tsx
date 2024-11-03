@@ -155,7 +155,7 @@ function Meditation() {
 
   const handleSignOut = async () => {
     await logOut();
-    navigate("/signin");
+    navigate("/");
   };
 
   const radius = 90; 

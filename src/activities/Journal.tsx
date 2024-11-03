@@ -131,7 +131,7 @@ function Journal() {
 
   const handleSignOut = async () => {
     await logOut();
-    navigate("/signin");
+    navigate("/");
   };
 
 const handleStartJournaling = () => {
