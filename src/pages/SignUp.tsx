@@ -33,7 +33,7 @@ const SignUp: React.FC = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-400 to-purple-200 w-full">
-      <div className="p-8 rounded-lg w-full flex flex-col w-full">
+      <div className="p-8 rounded-lg flex flex-col w-full lg:w-[500px]">
         <p className = "text-2xl font-bold text-center bg-white bg-clip-text text-transparent">
           Welcome,
         </p>
