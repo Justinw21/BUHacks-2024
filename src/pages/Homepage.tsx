@@ -18,7 +18,7 @@ function Homepage() {
       return "meditate"
     }
     if (randomNum == 1) {
-      return "journal"
+      return "meditate"
     }
     if (randomNum == 2) {
       return "jog"
@@ -49,7 +49,7 @@ function Homepage() {
   getCurrentUser()
 
   return (
-    <div className="flex flex-col justify-center items-center w-full">
+    <div className="flex flex-col  w-full">
       {activity === 'meditate' ? <Meditation /> : 
       activity === 'journal'? <Journal/>:
       activity === 'jog'? <Cardio/>: 
