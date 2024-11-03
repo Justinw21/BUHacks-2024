@@ -160,7 +160,7 @@ export default function History() {
                 
                 <div className="ml-4">
                   <div className="text-lg">{activity.name}</div>
-                  <div className="text-gray-600">{formatTimestamp(activity.timestamp)}</div>
+                  <div className="text-gray-600">{activity.timestamp}</div>
                 </div>
               </div>
             ))}
