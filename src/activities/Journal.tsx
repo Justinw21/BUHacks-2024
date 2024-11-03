@@ -8,9 +8,6 @@ import { doc, getDoc , setDoc , collection, query, where, getDocs} from 'firebas
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button";
 import CompletedActivity from "./CompletedActivity";
-
-
-
 import BottomNavbar from "@/components/ui/navbar";
 
 function Journal() {
@@ -64,14 +61,14 @@ function Journal() {
             setTimeLeft((prevTime) => prevTime - 1);
           }, 1000);
         } else if (timeLeft === 0) {
-            // When the timer hits zero, add to history
+            
             addToHistory();
             setIsActive(false);
             setActivityCompleted(true)
-            setTimeLeft(300) // Optionally stop the timer
+            setTimeLeft(300)
           }
     
-        return () => clearTimeout(timer); // Clean up on component unmount or reset
+        return () => clearTimeout(timer); 
       }, [isActive, timeLeft]);
     
 
@@ -139,6 +136,7 @@ const handleStartJournaling = () => {
   };
 
 
+<<<<<<< HEAD
   return (
     <div className="flex flex-col justify-center items-center w-full">
         {activityCompleted === null ? (
@@ -198,6 +196,60 @@ const handleStartJournaling = () => {
         <button className="focus:border-2 focus:border-blue-500 rounded-full px-2">🙂</button>
         <button className="focus:border-2 focus:border-blue-500 rounded-full px-2">😰</button>
         <button className="focus:border-2 focus:border-blue-500 rounded-full px-2">🤮</button>
+=======
+    return (
+        <div className="flex flex-col justify-center items-center w-full">
+            {activityCompleted === null ? (
+                <p>Loading...</p>
+            ) : activityCompleted ? (
+                <CompletedActivity/>
+            ) : (
+            <div>
+                <p className="text-4xl mt-10 ">Hi <span className="font-bold">{name},</span></p>
+                <p className="text-[24px]">Let's Journal</p>
+                <button onClick={handleSignOut}>
+                    Sign Out
+                </button>
+                <div className="max-w-2xl mx-auto p-4">
+            <h1 className="text-2xl font-bold text-center mb-10">Daily Journal</h1>
+            <div className="flex flex-col mb-4">
+            {!isJournaling ? (
+        <button
+          onClick={handleStartJournaling}
+          className="flex justify-center items-center w-[300px] h-[450px] text-white bg-[#B7AFDF] rounded hover:bg-blue-700 transition duration-300  "
+        >
+          Let's Journal +
+        </button>
+      ) : (
+        <div className="w-full max-w-md">
+            <p>What is one thing you accomplished yesterday that you are proud of?</p>
+          <textarea
+            value={entry}
+            onChange={(e) => setEntry(e.target.value)}
+            placeholder="Write your journal entry here..."
+            className="w-full h-60 p-2 border rounded"
+          />
+          <Button
+            onClick={addToHistory}
+            className="mt-4 px-4 py-2 text-white rounded hover:bg-green-700 transition duration-300"
+          >
+            Save Entry
+          </Button>
+          <div className="flex text-[36px] gap-4 mt-16 items-center ">
+            <p className="text-[30px]">Mood</p>
+            <button className="focus:border-2 focus:border-blue-500 rounded-full px-2">😀</button>
+            <button className="focus:border-2 focus:border-blue-500 rounded-full px-2">🙂</button>
+            <button className="focus:border-2 focus:border-blue-500 rounded-full px-2">😰</button>
+            <button className="focus:border-2 focus:border-blue-500 rounded-full px-2">🤮</button>
+            </div>
+        </div>
+      )}
+            </div>    
+        </div>
+      </div>
+)}
+            <BottomNavbar />
+>>>>>>> 037fe22bd3b0413e3d0acb2a455026dd283a1413
         </div>
     </div>
   )}
