@@ -27,7 +27,7 @@ const SignUp: React.FC = () => {
     } else {
 
       console.log("Sign-up successful:", userCredential);
-      navigate('/');
+      navigate('/homepage');
     }
   };
 
@@ -93,7 +93,7 @@ const SignUp: React.FC = () => {
         </form>
         <p className = "text-l mt-20 font-semibold text-center bg-white bg-clip-text text-transparent">
           Already have an account?  
-        <a href = "/signin" className="text-purple-450 cursor-pointer"> Sign in</a>
+        <a href = "/" className="text-purple-450 cursor-pointer"> Sign in</a>
       </p>
       </div>
     </div>

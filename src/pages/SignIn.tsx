@@ -17,7 +17,7 @@ const SignIn: React.FC = () => {
       const user = await signIn(email, password);
       if (user) {
         console.log("Signed in successfully:", user);
-        navigate('/');
+        navigate('/homepage');
 
       } else {
         console.log("Sign-in failed.");
@@ -87,4 +87,3 @@ const SignIn: React.FC = () => {
 };
 
 export default SignIn;
-
