@@ -68,13 +68,13 @@ export default function ActivityScreen() {
 
 
   const days = [
-    { day: 'M', completed: true },
-    { day: 'T', completed: true },
-    { day: 'W', completed: true },
-    { day: 'T', completed: true },
-    { day: 'F', completed: true },
-    { day: 'S', date: '2', completed: false },
-    { day: 'S', date: '3', completed: false }
+    {day: 'S', completed: true},
+    { day: 'M', date: '4', completed: false },
+    { day: 'T', date: '5', completed: false },
+    { day: 'W', date: '6', completed: false },
+    { day: 'T', date: '7', completed: false },
+    { day: 'F', date: '8', completed: false },
+    { day: 'S', date: '9', completed: false }
   ]
 
   const getIconAndBackgroundColor = (type: string) => {
