@@ -136,6 +136,7 @@ const handleStartJournaling = () => {
   };
 
 
+
   return (
     <div className="flex flex-col justify-center items-center w-full">
         {activityCompleted === null ? (
@@ -196,6 +197,7 @@ const handleStartJournaling = () => {
         <button className="focus:border-2 focus:border-blue-500 rounded-full px-2">😰</button>
         <button className="focus:border-2 focus:border-blue-500 rounded-full px-2">🤮</button>
 
+
     return (
         <div className="flex flex-col justify-center items-center w-full">
             {activityCompleted === null ? (
@@ -248,21 +250,13 @@ const handleStartJournaling = () => {
       </div>
 )}
             <BottomNavbar />
-        </div>
-    </div>
-  )}
-                
-    </div>
-        </div>
-          
-        <BottomNavbar />
-    </div>
-        )
-      }
-    </div>
 
-);
-};
+        </div>
+    )}
+                
+
+          
+  
 
 
 export default Journal;
