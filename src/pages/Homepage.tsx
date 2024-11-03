@@ -8,8 +8,10 @@ import BottomNavbar from "@/components/ui/navbar";
 
 import { db } from "@/firebase/firebaseConfig";
 import { getAuth } from 'firebase/auth';
-import { doc, getDoc , setDoc } from 'firebase/firestore';
-import { useState, useEffect } from "react"
+
+import { doc, getDoc } from 'firebase/firestore';
+
+import { useState} from "react"
 import Journal from "@/activities/Journal";
 
 import Meditation from "@/activities/Meditation";
@@ -18,7 +20,7 @@ import Meditation from "@/activities/Meditation";
 function Homepage() {
 
     const auth = getAuth();
-    const [name, setName] = useState ("")
+
 
 
     
@@ -50,7 +52,7 @@ function Homepage() {
     }
 
 
-    const [activity, setActivity] = useState(getTodaysActivity())
+    const [activity] = useState(getTodaysActivity())
 
     
     
@@ -68,9 +70,7 @@ function Homepage() {
 
       
             if (userDoc.exists()) {
-                const user = userDoc.data()
 
-                setName(user.name)
               return { id: userDoc.id, ...userDoc.data() }; 
             } else {
               console.log('No such user document!');
