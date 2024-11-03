@@ -154,7 +154,7 @@ const handleStartJournaling = () => {
             <div>
 
             
-                <p className="text-4xl  ">Hi <span className="font-bold">{name},</span></p>
+                <p className="text-4xl mt-10 ">Hi <span className="font-bold">{name},</span></p>
                 <p className="text-[24px]">Let's Journal</p>
 
 

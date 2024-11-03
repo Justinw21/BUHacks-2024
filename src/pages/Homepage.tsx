@@ -8,7 +8,9 @@ import BottomNavbar from "@/components/ui/navbar";
 
 import { db } from "@/firebase/firebaseConfig";
 import { getAuth } from 'firebase/auth';
-import { doc, getDoc} from 'firebase/firestore';
+
+import { doc, getDoc } from 'firebase/firestore';
+
 import { useState} from "react"
 import Journal from "@/activities/Journal";
 
@@ -68,6 +70,7 @@ function Homepage() {
 
       
             if (userDoc.exists()) {
+
               return { id: userDoc.id, ...userDoc.data() }; 
             } else {
               console.log('No such user document!');
