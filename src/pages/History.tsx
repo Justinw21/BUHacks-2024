@@ -4,7 +4,6 @@ import { Check } from 'lucide-react'
 import BottomNavbar from '@/components/ui/navbar'
 import { collection, getDocs, doc, getDoc } from 'firebase/firestore'
 import { getAuth, User } from 'firebase/auth'
-import { getDay, subDays, format } from 'date-fns'
 
 export default function ActivityScreen() {
   const [streak, setStreak] = useState<number | null>(null)
