@@ -64,14 +64,14 @@ function Journal() {
             setTimeLeft((prevTime) => prevTime - 1);
           }, 1000);
         } else if (timeLeft === 0) {
-            // When the timer hits zero, add to history
+            
             addToHistory();
             setIsActive(false);
             setActivityCompleted(true)
-            setTimeLeft(300) // Optionally stop the timer
+            setTimeLeft(300)
           }
     
-        return () => clearTimeout(timer); // Clean up on component unmount or reset
+        return () => clearTimeout(timer); 
       }, [isActive, timeLeft]);
     
 

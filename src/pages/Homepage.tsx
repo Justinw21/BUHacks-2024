@@ -15,6 +15,7 @@ import { useState} from "react"
 import Journal from "@/activities/Journal";
 
 import Meditation from "@/activities/Meditation";
+import Cardio from "@/activities/Cardio";
 
 
 function Homepage() {
@@ -43,7 +44,7 @@ function Homepage() {
         }
         if (randomNum == 1) {
        
-            return "journal"
+            return "jog"
         }
         if (randomNum == 2) {
             
@@ -92,7 +93,9 @@ function Homepage() {
     return (
         <div className="flex flex-col justify-center items-center w-full">
             {activity === 'meditate' ? <Meditation /> : 
-            activity === 'journal'? <Journal/>:<h1>Other Activity Page</h1>
+            activity === 'journal'? <Journal/>:
+            activity === 'jog'? <Cardio/>: 
+            <h1>Other Activity Page</h1>
             
             }
                 
