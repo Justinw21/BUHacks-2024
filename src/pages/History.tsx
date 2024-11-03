@@ -2,7 +2,6 @@ import { db } from '@/firebase/firebaseConfig'
 import { useState, useEffect } from 'react'
 import { Check } from 'lucide-react'
 import BottomNavbar from '@/components/ui/navbar'
-
 import { collection, getDocs } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 
@@ -11,12 +10,6 @@ const getStreakFromFirebase = () => {
     setTimeout(() => resolve(4), 1000)
   })
 }
-
-
-import { collection, getDocs, doc, getDoc } from 'firebase/firestore'
-import { getAuth, User } from 'firebase/auth'
-import { getDay, subDays, format } from 'date-fns'
-
 
 export default function ActivityScreen() {
   const [streak, setStreak] = useState<number | null>(null)
@@ -30,28 +23,13 @@ export default function ActivityScreen() {
       const user = auth.currentUser
       if (user) {
         setUserId(user.uid)
-
-        const userRef = doc(db, 'users', user.uid);
-        const userDoc = await getDoc(userRef);
-        if(userDoc.exists()){
-          const userInfo = userDoc.data()
-          setStreak(userInfo.streaks)
-        }
-
       } else {
         console.log('No user is signed in')
       }
     }
 
     getCurrentUser()
-
-
-    //getStreakFromFirebase(user).then(setStreak)
-
-
     getStreakFromFirebase().then(setStreak)
-    //getStreakFromFirebase(user).then(setStreak)
-
   }, [])
 
   useEffect(() => {
@@ -90,17 +68,13 @@ export default function ActivityScreen() {
 
 
   const days = [
-    { day: 'S', date: '27', completed: false },
-    { day: 'M', completed: true},
+    { day: 'M', completed: true },
     { day: 'T', completed: true },
     { day: 'W', completed: true },
     { day: 'T', completed: true },
     { day: 'F', completed: true },
-
-
-    { day: 'S', date: '2', completed: false }
-
-
+    { day: 'S', date: '2', completed: false },
+    { day: 'S', date: '3', completed: false }
   ]
 
   const getIconAndBackgroundColor = (type: string) => {
