@@ -158,7 +158,7 @@ function Meditation() {
     navigate("/signin");
   };
 
-  const radius = 90; // Radius of the circle
+  const radius = 90; 
   const circumference = 2 * Math.PI * radius;
   const progress = (timeLeft / 300) * circumference;
 
@@ -189,7 +189,7 @@ function Meditation() {
                             cy="110"
                             r={radius}
                             fill="none"
-                            stroke="#e5e7eb" // Light gray background circle
+                            stroke="#e5e7eb" 
                             strokeWidth="12"
                         />
                         <circle
@@ -197,7 +197,7 @@ function Meditation() {
                             cy="110"
                             r={radius}
                             fill="none"
-                            stroke="#B7AFDF" // Progress circle color
+                            stroke="#B7AFDF" 
                             strokeWidth="12"
                             strokeDasharray={circumference}
                             strokeDashoffset={circumference - progress}
@@ -216,7 +216,7 @@ function Meditation() {
                 <button
                     onClick={handleStart}
                     disabled={isActive}
-                    className="px-6 py-3 bg-[#B7AFDF] text-white rounded-lg shadow-lg hover:bg-[#686EAD] disabled:opacity-50 mt-24 mb-20"
+                    className="px-6 py-3 bg-[#78BBD7] text-white rounded-lg shadow-lg hover:bg-[#686EAD] disabled:opacity-50 mt-24 mb-20"
                 >
                     {isActive ? "Meditation in Progress" : "Get Started"}
                 </button>
