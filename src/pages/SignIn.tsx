@@ -31,7 +31,7 @@ const SignIn: React.FC = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-400 to-purple-200 w-full">
       <div className="p-8 rounded-lg w-full flex flex-col w-full">
-        <p className = "text-2xl font-bold  text-center bg-white bg-clip-text text-transparent">
+        <p className = "text-2xl font-bold text-center bg-white bg-clip-text text-transparent">
            Welcome back,
         </p>
         <p className="text-2xl font-semibold mb-4 text-center bg-white bg-clip-text text-transparent">
@@ -87,3 +87,4 @@ const SignIn: React.FC = () => {
 };
 
 export default SignIn;
+
