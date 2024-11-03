@@ -147,65 +147,51 @@ const handleStartJournaling = () => {
                 <CompletedActivity/>
             ) : (
 
-            <div>
-
-            
-                <p className="text-4xl mt-10 ">Hi <span className="font-bold">{name},</span></p>
-                <p className="text-[24px]">Let's Journal</p>
-
-
-                <button onClick={handleSignOut}>
-                    Sign Out
-                </button>
+            <div className="flex flex-col items-center">
+              <div className="flex justify-start items-center w-full px-4">
+                <div>
+                <p className=" text-[32px] mt-10 ">Hi, <span className="font-bold">{name}</span></p>
+                <p className=" text-[28px]">Let's Journal!</p>
+                </div>
+                <Button className="flex text-right rounded-[12px] justify-end mt-10 ml-auto">
+                <a href="/SignIn" className="text-white font-bold cursor-pointer">Sign out</a>
+                </Button>
+              </div>
+                
                 <div className="max-w-2xl mx-auto p-4">
-            <h1 className="text-2xl font-bold text-center mb-4">Daily Journal</h1>
-            <div className="flex flex-col mb-4">
+            <h1 className="text-2xl font-bold text-center mt-14">Daily Journal</h1>
+            <div className="flex flex-col mb-4 ">
            
             {!isJournaling ? (
 
         <button
           onClick={handleStartJournaling}
-          className="flex justify-center items-center w-[300px] h-[450px] text-white bg-[#B7AFDF] rounded hover:bg-blue-700 transition duration-300  "
+          className="flex justify-center font-bold items-center mt-4 w-[300px] h-[450px] text-white bg-[#B7AFDF] rounded-[14px] hover:bg-blue-700 transition duration-300  "
         >
           Let's Journal +
         </button>
       ) : (
-        <div className="w-full max-w-md">
-            <p>What is one thing you accomplished yesterday that you are proud of?</p>
+        <div className="flex flex-col justify-center w-full">
+            <p className="mt-4 text-[17px] text-white text-center font-bold bg-[#B7AFDF] mb-4 rounded-[8px] py-4"> Prompt: What is one thing you accomplished yesterday that you are proud of?</p>
           <textarea
             value={entry}
             onChange={(e) => setEntry(e.target.value)}
             placeholder="Write your journal entry here..."
-            className="w-full h-60 p-2 border rounded"
+            className=" h-60 p-2 rounded-[14px]"
           />
           <Button
             onClick={addToHistory}
-            className="mt-4 px-4 py-2 text-white rounded hover:bg-green-700 transition duration-300"
-          >
-            Save Entry
+            className="mt-4 px-4 py-2 bg-[#B7AFDF] font-bold text-[15px] text-white rounded-[14px] hover:bg-green-700 transition duration-300">
+              Save Entry
           </Button>
         </div>
       )}
-
-             
-        
-      
-            </div>
-            
+            </div>         
         </div>
-                
-
-
-            
-
             </div>
 
-)}
-                
-
-
+)}              
             <BottomNavbar />
-      
         </div>
   );
 }
