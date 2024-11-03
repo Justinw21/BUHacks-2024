@@ -1,9 +1,38 @@
-const Card = ({ title, description, image, link }: { title: string, description: string, image: string, link: string }) => {
+import React from "react";
+
+type CardProps = {
+  title: string;
+  description: string;
+  image: string;
+  link?: string;
+  color?: string;
+};
+
+const hexToRgb = (hex: string): [number, number, number] => {
+  hex = hex.replace("#", "");
+
+  const bigint = parseInt(hex, 16);
+  const r = (bigint >> 16) & 255;
+  const g = (bigint >> 8) & 255;
+  const b = bigint & 255;
+
+  return [r, g, b];
+};
+
+const Card: React.FC<CardProps> = ({ title, description, image, link, color }) => {
+  const [r, g, b] = color ? hexToRgb(color) : [229, 246, 245];
+
   return (
     <div
-      className="w-full max-w-screen-lg mx-auto my-4 p-4 rounded-lg bg-[#e5f6f5] flex items-center shadow-md cursor-pointer"
+      className="w-full max-w-screen-lg mx-auto my-4 p-4 rounded-lg flex items-center shadow-md cursor-pointer"
+      style={{
+        backgroundColor: `rgb(${r}, ${g}, ${b})`,
+      }}
+      
       onClick={() => {
-        window.open(link, "_blank");
+        if(link){
+          window.open(link, "_blank");
+        }
       }}
     >
       <img className="w-10 h-10 mr-4" src={image} alt={title} />
