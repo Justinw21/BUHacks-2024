@@ -1,60 +1,50 @@
 import { logOut } from "@/services/authServices";
-
 import { useNavigate} from 'react-router-dom';
-
 import { db } from "@/firebase/firebaseConfig";
 import { getAuth } from 'firebase/auth';
 import { doc, getDoc , setDoc , collection, query, where, getDocs} from 'firebase/firestore';
 import { useState, useEffect } from "react"
 import CompletedActivity from "./CompletedActivity";
-
-
-
 import BottomNavbar from "@/components/ui/navbar";
 
 function Meditation() {
-
-    const auth = getAuth();
-    const navigate = useNavigate();
-    const [name, setName] = useState ("")
-    const [timeLeft, setTimeLeft] = useState(300); 
-    const [isActive, setIsActive] = useState(false);
-    const [userId, setUserId] = useState("");
-
-    const [activityCompleted, setActivityCompleted] = useState<boolean | null>(null);
+  const auth = getAuth();
+  const navigate = useNavigate();
+  const [name, setName] = useState ("")
+  const [timeLeft, setTimeLeft] = useState(300); 
+  const [isActive, setIsActive] = useState(false);
+  const [userId, setUserId] = useState("");
+  const [activityCompleted, setActivityCompleted] = useState<boolean | null>(null);
 
     useEffect(() => {
-        const checkActivityCompletion = async () => {
-          const today = new Date();
-          const dateString = today.toISOString().split('T')[0]; 
+      const checkActivityCompletion = async () => {
+        const today = new Date();
+        const dateString = today.toISOString().split('T')[0]; 
 
-          const q = query(
-            collection(db, 'users', userId, 'history'), 
-            where('timestamp', '==', dateString)
-          );
-    
-          const querySnapshot = await getDocs(q);
-          if (!querySnapshot.empty) {
+        const q = query(
+          collection(db, 'users', userId, 'history'), 
+          where('timestamp', '==', dateString)
+        );
+  
+        const querySnapshot = await getDocs(q);
+        if (!querySnapshot.empty) {
             setActivityCompleted(true);
-          } else {
+        } else {
 
-            setActivityCompleted(false);
-          }
-        };
+          setActivityCompleted(false);
+        }
+      };
     
         checkActivityCompletion();
-      }, [userId]);
-
+    }, [userId]);
 
     useEffect(() => {
         let timer: NodeJS.Timeout;
         const user = auth.currentUser; 
         if (user) {
             setUserId(user.uid)
-
         }
         
-    
         if (isActive && timeLeft > 0) {
           timer = setTimeout(() => {
             setTimeLeft((prevTime) => prevTime - 1);
@@ -73,21 +63,15 @@ function Meditation() {
 
     const getTodaysActivity = () => {
         const today = new Date().toISOString().split('T')[0];
-        
         const seed = parseInt(today.replace(/-/g, ''), 10);
-       
-        const randomNum = seed % 3;
-
+         const randomNum = seed % 3;
         if (randomNum == 0) {
-           
             return "meditate"
         }
         if (randomNum == 1) {
-       
             return "journal"
         }
         if (randomNum == 2) {
-            
             return "jog"
         }
     }
@@ -108,7 +92,6 @@ function Meditation() {
 
     const [activity] = useState(getTodaysActivity())
     const handleStart = () => {
-
         setIsActive(true);
         
       };
@@ -122,16 +105,10 @@ function Meditation() {
     
     const getCurrentUser = async () => {
         const user = auth.currentUser; 
-        
-        
-      
         if (user) {
-            
           try {
-            
             const userRef = doc(db, 'users', user.uid); 
             const userDoc = await getDoc(userRef); // Fetch the user document
-
       
             if (userDoc.exists()) {
                 const user = userDoc.data()
@@ -217,8 +194,6 @@ function Meditation() {
                         </span>
                     </div>
                 </div>
-
-
                 <button
                     onClick={handleStart}
                     disabled={isActive}
@@ -229,11 +204,7 @@ function Meditation() {
                 </button>
 
             </div>
-
 )}
-                
-
-
             <BottomNavbar />
       
         </div>
