@@ -106,7 +106,7 @@ function Meditation() {
         }
       };
 
-    const [activity, setActivity] = useState(getTodaysActivity())
+    const [activity] = useState(getTodaysActivity())
     const handleStart = () => {
 
         setIsActive(true);

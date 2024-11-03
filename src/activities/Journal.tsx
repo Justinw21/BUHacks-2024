@@ -86,7 +86,6 @@ function Journal() {
             timestamp: new Date().toISOString().split('T')[0],
 
           };
-          // Create a document in the history collection for the user
           await setDoc(doc(db, 'users', userId, 'history', `${Date.now()}`), activity);
           setActivityCompleted(true)
           console.log("Activity added to history:", activity);
@@ -107,25 +106,25 @@ function Journal() {
           try {
             
             const userRef = doc(db, 'users', user.uid); 
-            const userDoc = await getDoc(userRef); // Fetch the user document
+            const userDoc = await getDoc(userRef); 
 
       
             if (userDoc.exists()) {
                 const user = userDoc.data()
 
                 setName(user.name)
-              return { id: userDoc.id, ...userDoc.data() }; // Return user data
+              return { id: userDoc.id, ...userDoc.data() }; 
             } else {
               console.log('No such user document!');
-              return null; // User document does not exist
+              return null; 
             }
           } catch (error) {
             console.error('Error fetching user data: ', error);
-            throw error; // Handle errors as needed
+            throw error; 
           }
         } else {
           console.log('No user is signed in');
-          return null; // No user is signed in
+          return null; 
         }
       };
       getCurrentUser()
@@ -135,9 +134,6 @@ function Journal() {
     navigate("/signin");
   };
 
-  const clearEntry = () => {
-    setEntry('');
-};
 const handleStartJournaling = () => {
     setIsJournaling(true);
   };
